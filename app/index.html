@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Heart Disease Detector </title>
+    </head>
+
+    <body class="bg-light">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">
+            <img src="static/logo.png" alt="Logo" style="width:40px;">
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="static/about.html">About</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container bg-light" style="width: 1000px; margin-top:100px" >
+            <center><img src="static/heart-disease.png" class="img-fluid " alt="Twitter" style="height:200px;">
+            <br> <br>
+            <h1 class="display-4">Heart Disease Detector</h1>
+            <p class="text-monospace">Created by: Kelompok Bernat Tidur 2</p>
+            <br>
+            </center>
+            <div class="container border shadow p-4 mb-4 bg-white" style="width: 600px;">
+                <br>
+                <form method="GET" class="form-horizontal" action="#result">
+                    <div class="form-row">
+                        <div class="col-sm-4">Age:</div>
+                        <div class="col">
+                        <input id="age" placeholder="Enter your age (1-100)" class="form-control" name="age" type="number" {% if age %} value="{{ age }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="sel1">Gender:</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control col" id="gender" name="gender">
+                            <option value="1" {% if gender == 0 %} {% endif %}>Male</option>
+                            <option value="0" {% if gender == 1 %} {% endif %}>Female</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">                  
+                        <div class="col-sm-4">
+                            <label for="cpt">Chest-Pain Type:</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="cpt" name="cpt">
+                            <option value="1" {% if cpt == 1 %} selected {% endif %}>Typical Angina</option>
+                            <option value="2" {% if cpt == 2 %} selected {% endif %}>Atypical Angina</option>
+                            <option value="3" {% if cpt == 3 %} selected {% endif %}>Non-Anginal Pain</option>
+                            <option value="4" {% if cpt == 4 %} selected {% endif %}>Asymptotic</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row"> 
+                        <div class="col-sm-4">
+                        <label for="rbp">Resting Blood Pressure (mg/dl):</label>
+                        </div>
+                        <div class="col">
+                        <input type="number" class="form-control" id="rbp" placeholder="Enter your blood pressure (0-200)" name="rbp" {% if rbp %} value="{{ rbp }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="sc">Serum Cholestrol (mg/dl):</label>
+                        </div>
+                        <div class="col">                    
+                        <input type="number" class="form-control" id="sc" placeholder="Enter your serum cholestrol (0-530)" name="sc" {% if sc %} value="{{ sc }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="hfbs">High Fasting Blood Sugar:</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="hfbs" name="hfbs">
+                            <option value="0" {% if hfbs == 0 %} selected {% endif %}><= 120 mg/dl</option>
+                            <option value="1" {% if hfbs == 1 %} selected {% endif %}> > 120mg/dl</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">    
+                        <label for="recg">Resting ECG:</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="recg" name="recg">
+                            <option value="0" {% if recg == 0 %} selected {% endif %}>Normal</option>
+                            <option value="1" {% if recg == 1 %} selected {% endif %}>Having ST-T Wave Abnormality</option>
+                            <option value="2" {% if recg == 2 %} selected {% endif %}>Left Ventricular Hyperthrophy</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="mhra">Max-Heart Rate Achieved:</label>
+                        </div>
+                        <div class="col">
+                        <input type="number" class="form-control" id="mhra" placeholder="Enter your Max-Heart Rate (60-202)" name="mhra" {% if rbp %} value="{{ mhra }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="eia">Exercise Induced Angina:</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="eia" name="eia">
+                                <option value="0" {% if eia == 0 %} selected {% endif %}>No</option>
+                                <option value="1" {% if eia == 1 %} selected {% endif %}>Yes</option>    
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="std">ST Depression:</label>
+                        </div>
+                        <div class="col">
+                        <input id="std" class="form-control" name="std" type="number" placeholder="Enter your ST Depression (-3 - 62)" step="0.1" {% if std %} value="{{ std }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="pests">Peak Exercise ST Segment</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="pests" name="pests">
+                            <option value="1" {% if pests == 1 %} selected {% endif %}>Upsloping</option>
+                            <option value="2" {% if pests == 2 %} selected {% endif %}>Flat</option>
+                            <option value="3" {% if pests == 3 %} selected {% endif %}>Downsloping</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="nomv">Number of Major Vessels:</label>
+                        </div>
+                        <div class="col">
+                        <input id="nomv" class="form-control" name="nomv" type="number" placeholder="Enter your Major Vessels (0-3)" min="0" max="3" {% if nomv %} value="{{ nomv }}" {% endif %}>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-sm-4">
+                        <label for="thal">Thal</label>
+                        </div>
+                        <div class="col">
+                        <select class="form-control" id="thal" name="thal">
+                            <option value="3" {% if thal == 3 %} selected {% endif %}>Normal</option>
+                            <option value="6" {% if thal == 6 %} selected {% endif %}>Fixed Defect</option>
+                            <option value="7" {% if thal == 7 %} selected {% endif %}>Reversable Defect</option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary float-right" onclick="validateRegistrationForm();">Submit</button>
+                    <a class="btn btn-secondary" href="/" role="button">Re-entry</a>
+                </form>
+            </div>
+            <br>
+            
+            {% if diagnose %}
+            <div id="result" class="container border shadow p-4 mb-4 bg-white" style="width: 600px;">
+                <center><h1 class="display-4">Result:</h1>
+                    <p id="presult">{{ diagnose }}</p>
+                </center>
+            </div>
+            {% endif%}
+            
+        <br>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Handler for .ready() called.
+            generateResult();
+        });
+        function generateResult() {
+            var res = document.getElementById("presult").innerHTML;
+            var num = res.split("");
+            var num = num[2]
+            console.log(num);
+
+            if (num == 0) {
+                document.getElementById("presult").innerHTML = "You are diagnosed as <strong>not having heart disease!</strong> <br><br> <img class='img-fluid' src='static/Happy.jpg' alt='Yay'>";
+            } else {
+                document.getElementById("presult").innerHTML = "You are diagnosed as having a <strong>stadium "+num+" heart disease! </strong><br><br> <img class='img-fluid' src='static/Sad.jpg' alt='Noo'>";
+
+            }
+            return true;
+        }
+        function validateRegistrationForm() {
+            //get data from the form
+            var age = document.getElementById("age").value;
+            var rbp = document.getElementById("rbp").value;
+            var sc = document.getElementById("sc").value;
+            var mhra = document.getElementById("mhra").value;            
+            var std = document.getElementById("std").value;            
+
+            if (age < 1 || age > 100) {
+                alert("Age must be in range 1-100");
+                return false;
+            }
+            if (rbp < 0 || rbp > 200) {
+                alert("Blood pressure must be in range 0-200");
+                return false;
+            }
+            if (sc < 0 || sc > 530) {
+                alert("Serum cholestrol must be in range 0-530");
+                return false;
+            }
+            if (mhra < 60 || mhra > 202) {
+                alert("Max Heart Rate must be in range 60-202");
+                return false;
+            }
+            if (std < -3 || std > 62) {
+                alert("ST Depression must be in range -3 - 62");
+                return false;
+            }
+        }
+    </script>
+</html>
