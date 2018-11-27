@@ -26,7 +26,7 @@ def index():
 	recg = request.args.get('recg', default=None, type=int)
 	mhra = request.args.get('mhra', default=None, type=int)
 	eia = request.args.get('eia', default=None, type=int)
-	std = request.args.get('std', default=None, type=int)
+	std = request.args.get('std', default=None, type=float)
 	pests = request.args.get('pests', default=None, type=int)
 	nomv = request.args.get('nomv', default=None, type=int)
 	thal = request.args.get('thal', default=None, type=int)

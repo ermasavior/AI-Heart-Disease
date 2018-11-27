@@ -175,15 +175,16 @@
                         </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary float-right" onclick="validateRegistrationForm();">Submit</button>
+                    <button type="submit" class="btn btn-primary float-right" onclick="return validateRegistrationForm();">Submit</button>
                     <a class="btn btn-secondary" href="/" role="button">Re-entry</a>
                 </form>
             </div>
             <br>
             
-            {% if diagnose %}
+            <!-- {{ diagnose }} -->
+            {% if diagnose!=None %}
             <div id="result" class="container border shadow p-4 mb-4 bg-white" style="width: 600px;">
-                <center><h1 class="display-4">Result:</h1>
+                <center><h1 class="display-4">Result</h1>
                     <p id="presult">{{ diagnose }}</p>
                 </center>
             </div>
@@ -196,11 +197,12 @@
         $(document).ready(function() {
             // Handler for .ready() called.
             generateResult();
+            
         });
         function generateResult() {
             var res = document.getElementById("presult").innerHTML;
             var num = res.split("");
-            var num = num[2]
+            var num = num[1]
             console.log(num);
 
             if (num == 0) {
@@ -219,26 +221,27 @@
             var mhra = document.getElementById("mhra").value;            
             var std = document.getElementById("std").value;            
 
-            if (age < 1 || age > 100) {
+            if (age < 1 || age > 100 || age=="") {
                 alert("Age must be in range 1-100");
                 return false;
             }
-            if (rbp < 0 || rbp > 200) {
+            if (rbp < 0 || rbp > 200 || rbp=="") {
                 alert("Blood pressure must be in range 0-200");
                 return false;
             }
-            if (sc < 0 || sc > 530) {
+            if (sc < 0 || sc > 530 || sc=="") {
                 alert("Serum cholestrol must be in range 0-530");
                 return false;
             }
-            if (mhra < 60 || mhra > 202) {
+            if (mhra < 60 || mhra > 202 || mhra=="") {
                 alert("Max Heart Rate must be in range 60-202");
                 return false;
             }
-            if (std < -3 || std > 62) {
+            if (std < -3 || std > 62 || std=="") {
                 alert("ST Depression must be in range -3 - 62");
                 return false;
             }
+            
         }
     </script>
 </html>
